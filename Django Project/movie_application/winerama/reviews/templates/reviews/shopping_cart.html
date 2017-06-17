@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<h2>Welcome </h2>
+{% endblock %}
+
+{% block content %}
+{%if movies%}
+<h2>Following movies have been added to the cart </h2>
+{%for wine in movies%}
+<h4><a href="{% url 'reviews:wine_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h4>
+<form action ="{% url 'reviews:remove_movie'  wine.id%}" >
+<button type="submit" class="btn btn-danger" aria-label="Left Align">
+ Remove
+</button>
+</form>
+<br />
+{%endfor%}
+<form action ="{% url 'reviews:checkout' %}" >
+<button type="submit" class="btn btn-success btn-lg" aria-label="Left Align">
+ CheckOut!
+</button>
+</form>
+{% else %}
+<h2>No movies in cart </h2>
+{% endif %}
+{% endblock %}
+

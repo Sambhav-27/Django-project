@@ -1,0 +1,1 @@
+1. Various addresses in code are for db.sqlite3 file, which is currently on desktop. If you want to run it on some other directory change those addresses in views.py, apriori.py, recommends.py and may be more.

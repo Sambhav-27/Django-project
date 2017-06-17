@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<h2>Welcome </h2>
+{% endblock %}
+
+{% block content %}
+{%if movies%}
+<h2>Following movies have been rented by you </h2>
+{%for wine in movies%}
+<h4><a href="{% url 'reviews:wine_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h4>
+<br />
+{%endfor%}
+{% else %}
+<h2>No movies have been rented by you </h2>
+{% endif %}
+{% endblock %}
+

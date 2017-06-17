@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<h2>Added To Cart!! </h2>
+{% endblock %}
+
+{% block content %}
+<h2>You added {{wine.name}} to Cart</h2>
+{% if wine.review_set.all %}
+<h3>What do others say about this movie??</h3>
+<div class="row">
+    {% for review in wine.review_set.all %}
+    <div class="col-xs-6 col-lg-4">
+        <em>{{ review.comment }}</em>
+        <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+        <h5><a href="{% url 'reviews:review_detail' review.id %}">
+        Read more
+        </a></h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>Be the first one to review!!</p>
+{% endif %}
+{% if res %}
+<h3>Items frequently bought together</h3>
+<h4><a href="{% url 'reviews:wine_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h4>
+{%for wine in res%}
+<h4><a href="{% url 'reviews:wine_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h4>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
